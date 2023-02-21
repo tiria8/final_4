@@ -8,8 +8,8 @@ class DirectorService:
     def get_one(self, bid):
         return self.dao.get_one(bid)
 
-    def get_all(self):
-        return self.dao.get_all()
+    def get_all(self, filter):
+        return self.dao.get_all(filter)
 
     def create(self, director_d):
         return self.dao.create(director_d)

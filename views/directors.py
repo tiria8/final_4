@@ -12,8 +12,12 @@ director_ns = Namespace('directors')
 class DirectorsView(Resource):
     @auth_required
     def get(self):
-        rs = director_service.get_all()
-        res = DirectorSchema(many=True).dump(rs)
+        page = request.args.get("page")
+        filters = {
+            "page": page
+        }
+        all_directors = director_service.get_all(filters)
+        res = DirectorSchema(many=True).dump(all_directors)
         return res, 200
 
     @admin_required
